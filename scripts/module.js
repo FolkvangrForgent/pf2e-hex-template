@@ -13,4 +13,4 @@ async function rrrrr(canvas) {
   }
 }
 Hooks.on('canvasInit', rrrrr);
-Hooks.once('canvasReady', rrrrr);
+Hooks.once('ready', rrrrr);
