@@ -1,6 +1,6 @@
 {
-  "id": "module",
-  "title": "New Module",
+  "id": "pf2e-hex-template",
+  "title": "pf2e-hex-template",
   "description": "",
   "version": "#{VERSION}#",
   "library": "false",
