@@ -1,10 +1,10 @@
 async function setGridTemplates(canvas) {
   if (canvas.grid.isSquare) {
-    if (!game.settings.get("core", "gridTemplates")) {
+    if (game.settings.get("core", "gridTemplates")) {
       await game.settings.set("core", "gridTemplates", false);
     }
   } else {
-    if (game.settings.get("core", "gridTemplates")) {
+    if (!game.settings.get("core", "gridTemplates")) {
       await game.settings.set("core", "gridTemplates", true);
     }
   }
