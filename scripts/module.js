@@ -22,9 +22,9 @@ Hooks.once('ready', setGridTemplates2);
 // hook to add collisions like square has
 Hooks.on("refreshMeasuredTemplate", (template, data) => {
     if (canvas.grid.isHex) {
-        collisionType = "move";
+        const collisionType = "move";
       
-        gridPositions = template._getGridHighlightPositions()
+        const gridPositions = template._getGridHighlightPositions()
         
         canvas.interface.grid.getHighlightLayer(template.highlightId).clear();
         
