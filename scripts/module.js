@@ -1,26 +1,26 @@
 async function setGridTemplates(canvas) {
-  if (canvas.grid.isSquare) {
-    if (game.settings.get("core", "gridTemplates")) {
-      await game.settings.set("core", "gridTemplates", false);
+    if (game.user.isGM) {
+        if (canvas.grid.isSquare) {
+            if (game.settings.get("core", "gridTemplates")) {
+                await game.settings.set("core", "gridTemplates", false);
+            }
+        } else {
+            if (!game.settings.get("core", "gridTemplates")) {
+                await game.settings.set("core", "gridTemplates", true);
+            }
+        }
     }
-  } else {
-    if (!game.settings.get("core", "gridTemplates")) {
-      await game.settings.set("core", "gridTemplates", true);
-    }
-  }
 }
 
 async function setGridTemplatesWrapper() {
-  await setGridTemplates(game.canvas)
+    await setGridTemplates(game.canvas)
 }
   
 Hooks.on('canvasInit', setGridTemplates);
 
-// attempt to work around when pf2e sets template style - seems to occasionally work
-Hooks.once('ready', setGridTemplatesWrapper);
-
-// hacky hook to add collisions highlights like square
-Hooks.on("refreshMeasuredTemplate", (template, data) => {
+async function hexGridHightlight(template, data)  {
+    setGridTemplatesWrapper();
+    
     if (canvas.grid.isHexagonal) {
         const collisionType = "move";
       
@@ -56,4 +56,7 @@ Hooks.on("refreshMeasuredTemplate", (template, data) => {
             }
         }
     }
-});
+}
+// hacky hook to add collisions highlights like square
+Hooks.on("refreshMeasuredTemplate", hexGridHightlight);
+Hooks.on("drawMeasuredTemplate", hexGridHightlight);
