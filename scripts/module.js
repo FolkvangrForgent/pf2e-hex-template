@@ -59,4 +59,4 @@ async function hexGridHightlight(template, data)  {
 }
 // hacky hook to add collisions highlights like square
 Hooks.on("refreshMeasuredTemplate", hexGridHightlight);
-Hooks.on("drawMeasuredTemplate", hexGridHightlight);
+Hooks.on("drawMeasuredTemplate", setGridTemplatesWrapper);
