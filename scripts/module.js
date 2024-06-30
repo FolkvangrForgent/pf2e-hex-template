@@ -13,13 +13,17 @@ async function setGridTemplates(canvas) {
 }
 
 async function setGridTemplatesWrapper() {
-    await setGridTemplates(game.canvas)
+    setTimeout(() => {
+        setGridTemplates(game.canvas);
+    }, 500);
 }
   
 Hooks.on('canvasInit', setGridTemplates);
 
+Hooks.on("ready", setGridTemplatesWrapper);
+
 async function hexGridHightlight(template, data)  {
-    setGridTemplatesWrapper();
+    setGridTemplates(canvas);
     
     if (canvas.grid.isHexagonal) {
         const collisionType = "move";
@@ -59,4 +63,3 @@ async function hexGridHightlight(template, data)  {
 }
 // hacky hook to add collisions highlights like square
 Hooks.on("refreshMeasuredTemplate", hexGridHightlight);
-Hooks.on("drawMeasuredTemplate", setGridTemplatesWrapper);
